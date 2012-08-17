@@ -1,0 +1,11 @@
+!!!
+%html
+  %head
+    = stylesheet_link_tag 'publish'
+  %body.publish
+    %h1 Publish a test RabbitMessage
+
+    - form_tag '/publish', :class => :publish_form do
+      = text_area_tag :rabbit_message, :placeholder => 'A message to send over rabbit'
+      %br/
+      = submit_tag 'Publish', :class => :btn
