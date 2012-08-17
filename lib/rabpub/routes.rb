@@ -1,4 +1,6 @@
 class RabPubApplication < Sinatra::Base
+  enable :sessions
+  register Sinatra::Flash
   register SinatraMore::MarkupPlugin
   register SinatraMore::RenderPlugin
 
@@ -12,6 +14,13 @@ class RabPubApplication < Sinatra::Base
 
   get '/publish' do
     haml_template 'publish'
+  end
+
+  post '/publish' do
+    message = params[:rabbit_message]
+    BunnyRabbit.publish message
+    flash[:notice] = 'Successfully published message'
+    redirect to '/publish'
   end
 
   get '/stylesheets/:css_file.css' do |css_file|

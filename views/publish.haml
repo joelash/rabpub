@@ -4,6 +4,7 @@
     = stylesheet_link_tag 'publish'
   %body.publish
     %h1 Publish a test RabbitMessage
+    = flash_tag :notice
 
     - form_tag '/publish', :class => :publish_form do
       = text_area_tag :rabbit_message, :placeholder => 'A message to send over rabbit'
